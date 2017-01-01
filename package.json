@@ -1,0 +1,19 @@
+{
+  "name": "voting-app",
+  "version": "1.0.0",
+  "description": "Voting App built using node, react, etc.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "FCC",
+    "Back",
+    "End",
+    "node",
+    "react",
+    "mongo"
+  ],
+  "author": "Yasser Hussain",
+  "license": "MIT"
+}

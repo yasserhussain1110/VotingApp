@@ -1,0 +1,74 @@
+<!doctype HTML>
+html
+  head
+    title Voting App
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', rel='stylesheet')
+    link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', rel='stylesheet')
+    link(href="style.css", rel='stylesheet')
+
+    script(src="https://code.jquery.com/jquery-3.1.1.min.js")
+    //-script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js")
+    //-script(src="myscripts.js")
+    script.
+      $(document).ready(function () {
+        var ctx = document.getElementById("voteChart").getContext("2d");
+        var myDoughnutChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+              label: '# of Votes',
+              data: [12, 19, 3, 5, 2, 3],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+              ],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            cutoutPercentage: 30,
+            fullWidth: false,
+            legend: {
+              display: true,
+              position: 'bottom'
+            }
+          }
+        });
+      });
+
+    body
+      nav.navbar.navbar-default.navbar-fixed-top
+        div.container-fluid
+          div.navbar-header
+            a.navbar-brand(href="/") Voting App
+          ul.nav.navbar-nav
+            li.active: a(href="/") Home
+          ul.nav.navbar-nav.navbar-right
+            li: a(href="/login") Login
+
+
+      div.single-poll-container.container
+        div.jumbotron
+          div.row
+            div.col-sm-4
+              p Which fruit do you prefer?
+              form
+                div.form-group
+                  label(for="user-choice") I Choose...
+                  select.form-control#user-choice
+                    option(value="", selected, disabled, hidden) Please select
+                    option Apple
+                    option Orange
+                    option Grapes
+                button.col-xs-12.btn.btn-block.btn-primary(type="submit") Submit
+                a.col-xs-12.btn.btn-block.twitter-btn
+                  i.fa.fa-twitter(aria-hidden="true")
+                  span Share on Twitter
+            div.col-sm-offset-2.col-sm-6
+              canvas#voteChart

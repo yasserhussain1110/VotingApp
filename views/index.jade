@@ -1,0 +1,30 @@
+<!doctype HTML>
+html
+  head
+    title Voting App
+    // Latest compiled and minified CSS
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', rel='stylesheet')
+    link(href="style.css", rel='stylesheet')
+
+    //-Latest compiled and minified JavaScript
+    //-script(src="https://code.jquery.com/jquery-3.1.1.min.js")
+    //-script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
+    //-script(src="myscripts.js")
+
+  body
+    nav.navbar.navbar-default.navbar-fixed-top
+      div.container-fluid
+        div.navbar-header
+          a.navbar-brand(href="/") Voting App
+        ul.nav.navbar-nav
+          li.active: a(href="/") Home
+        ul.nav.navbar-nav.navbar-right
+          li: a(href="/login") Login
+
+
+    div.head-jumbo.jumbotron.jumbotron-fluid
+      div.heading.container
+        h2 Voto: Awesome Voting App
+        h3 What would you like to do today?
+        a.heading-button.btn.btn-primary(href="/signup") SignUp
+        a.heading-button.btn.btn-success(href="/polls") Vote

@@ -15,5 +15,10 @@
     "mongo"
   ],
   "author": "Yasser Hussain",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "jade": "^1.11.0",
+    "mongodb": "^2.2.16"
+  }
 }

@@ -2,14 +2,8 @@
 html
   head
     title Voting App
-    // Latest compiled and minified CSS
     link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', rel='stylesheet')
-    link(href="style.css", rel='stylesheet')
-
-    //-Latest compiled and minified JavaScript
-    //-script(src="https://code.jquery.com/jquery-3.1.1.min.js")
-    //-script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
-    //-script(src="myscripts.js")
+    link(href="/style.css", rel='stylesheet')
 
   body
     nav.navbar.navbar-default.navbar-fixed-top
@@ -27,6 +21,6 @@ html
         h1 FCC Polls
         p.lead Below are all FCC Polls.
         ul.polls-list.list-group
-          li.list-group-item First item
-          li.list-group-item Sec item
-          li.list-group-item Third item
+          each poll in polls
+            li.list-group-item
+              a.poll_link(href="/poll/#{poll._id}") #{poll.question}

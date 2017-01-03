@@ -66,3 +66,8 @@ body {
   text-decoration: none;
   color: white;
 }
+
+.poll_link, .poll_link:hover {
+    text-decoration: none;
+    color: inherit;
+}

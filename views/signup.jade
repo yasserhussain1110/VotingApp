@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+html
+  head
+    title Voting App
+
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', rel='stylesheet')
+    link(href="/style.css", rel='stylesheet')
+
+  body
+    div.container.login-page
+      div.row
+        div.col-xs-6
+          form.form-login(method="post" action="")
+            h2.form-login-heading Please Sign Up Continue
+            label.sr-only(for="inputEmail") Email Address
+            if locals.email
+              input.form-control#inputEmail(name="email" value="#{email}" type="email" required autofocus)
+            else
+              input.form-control#inputEmail(name="email" placeholder="Email address" type="email" required autofocus)
+            if locals.emailError
+              span.inputError #{emailError}
+
+            label.sr-only(for="inputPassword") Password
+            input.form-control#inputPassword(name="password" placeholder="Password" type="password" required)
+            if locals.passwordError
+              span.inputError #{passwordError}
+
+            if locals.errorMsg
+              span.validationError #{errorMsg}
+            button.btn.btn-lg.btn-primary.btn-block(type="submit") Sign Up

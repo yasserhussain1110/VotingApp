@@ -71,3 +71,11 @@ body {
     text-decoration: none;
     color: inherit;
 }
+
+.login-page {
+  background-color: beige;
+}
+
+.login-page *{
+  margin: 5px 5px;
+}

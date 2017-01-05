@@ -1,3 +1,7 @@
+$(document).ready(function () {
+  onPollReady(answers);
+});
+
 function random(lower_limit, upper_limit) {
   return ((Math.random() * (upper_limit - lower_limit + 1)) | 0) + lower_limit;
 }

@@ -170,5 +170,10 @@ function authenticateUser(loginParams, onAuthSuccess, onAuthFailure) {
 }
 
 
+app.get('/newpoll', function(req, res) {
+  res.render('newpoll');
+});
+
+
 app.listen(process.env.port || 8080);
 // db.users.createIndex( { email: 1 }, { unique: true } )

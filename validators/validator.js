@@ -1,6 +1,6 @@
 var validator = require('validator');
 
-const app_validator = {
+const appValidator = {
   validateSignUpForm: function (params) {
     errors = {};
     if (!params.email || !validator.isEmail(params.email)) {
@@ -12,7 +12,45 @@ const app_validator = {
     }
 
     return errors;
+  },
+
+  validateNewPollForm: function (params) {
+    errors = {};
+    if (!params.question || !params.question.trim()) {
+      errors.questionError = "Question cannot be empty";
+    }
+
+    var choiceErrors = [];
+
+    var choiceKeys = Object.keys(params).filter(function (param) {
+      return /^choice\d+$/.test(param);
+    });
+
+    if (choiceKeys.length === 0) {
+      choiceErrors.push("Should have at least one choice.");
+    }
+
+    choiceKeys.forEach(function (key) {
+      var choiceVal = params[key];
+      if (!choiceVal || !choiceVal.trim()) {
+        choiceErrors.push("Invalid choice " + choiceVal + " for " + key);
+      }
+    });
+
+    if (choiceErrors.length > 0) {
+      errors.choiceErrors = choiceErrors;
+    }
+
+    return errors;
+  },
+
+  validateVoteForm: function (params) {
+    errors = {};
+    if (!params.choice || !params.choice.trim()) {
+      errors.choiceError = "Choice cannot be empty";
+    }
+    return errors;
   }
 };
 
-module.exports = app_validator;
+module.exports = appValidator;

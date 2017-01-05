@@ -8,8 +8,11 @@ const _ = require('lodash');
 const merge = require('merge');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
+const pollController = require('./controllers/poll');
+const newPollController = require('./controllers/new_poll');
+const conf = require('./services/conf');
 
-var dbUrl = process.env.DATABASE_URL || "mongodb://localhost:27017/voto";
+var dbUrl = conf.dbUrl;
 
 app.set('view engine', 'jade');
 
@@ -45,21 +48,9 @@ app.get('/polls', function (req, res) {
   });
 });
 
-app.get('/poll/:id([0-9a-fA-F]{24})', function (req, res) {
-  var pollObjectId = req.params.id;
-  mongo.connect(dbUrl, function (err, db) {
-    const polls = db.collection("polls");
-    polls.find({_id: ObjectID(pollObjectId)}, {_id: 0, question: 1, answers: 1}).toArray(function (err, polls) {
-      if (polls.length == 0) {
-        res.status(404).send("Could not find poll");
-      } else {
-        var poll = polls[0];
-        res.render('poll', {question: poll.question, answerString: JSON.stringify(poll.answers)});
-      }
-      db.close();
-    });
-  });
-});
+app.get('/poll/:id([0-9a-fA-F]{24})', pollController.get);
+
+app.post('/poll/:id([0-9a-fA-F]{24})', pollController.post);
 
 app.get('/signup', function (req, res) {
   if (req.session.user) {
@@ -170,9 +161,8 @@ function authenticateUser(loginParams, onAuthSuccess, onAuthFailure) {
 }
 
 
-app.get('/newpoll', function(req, res) {
-  res.render('newpoll');
-});
+app.get('/newpoll', newPollController.get);
+app.post('/newpoll', newPollController.post);
 
 
 app.listen(process.env.port || 8080);

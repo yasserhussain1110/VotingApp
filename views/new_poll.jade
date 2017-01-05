@@ -7,7 +7,7 @@ html
     link(href="style.css", rel='stylesheet')
 
     script(src="jquery-3.1.1.min.js")
-    script(src="newpoll.js")
+    script(src="new_poll.js")
 
   body
     nav.navbar.navbar-default.navbar-fixed-top
@@ -29,16 +29,16 @@ html
             form(method="post" action="")
               div.form-group
                 label(for="question") Question:
-                input.form-control#question(type="text" required)
+                input.form-control#question(name="question" type="text" required)
 
               div.form-group
-                label Options:
+                label Choices:
               div
 
-              div.option-list
-                div.option.row
+              div.choice-list
+                div.choice.row
                   div.col-xs-8
-                    input.form-control#option1(name="option1" type="text" required)
+                    input.form-control#choice1(name="choice1" type="text" required)
                   div.col-xs-2
                     button.btn.btn-success.add-btn(type="button") +
                     button.btn.btn-danger.remove-btn.hidden(type="button") -

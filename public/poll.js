@@ -4,7 +4,7 @@ $(document).ready(function () {
   $(".new-choice-button").click(function (e) {
     var btn = $(".new-choice-button");
     if (btn.hasClass("pressed")) {
-      btn.removeClass("pressed")
+      btn.removeClass("pressed");
       $(".new-choice").addClass("hidden");
     } else {
       btn.addClass("pressed");
@@ -18,16 +18,16 @@ function random(lower_limit, upper_limit) {
 }
 
 function onPollReady(answers) {
-  var ansItems = answers.map(function (ans) {
-    return ans.value;
+  var ansChoices = answers.map(function (ans) {
+    return ans.choice;
   });
 
-  var ansVote = answers.map(function (ans) {
-    return ans.vote;
+  var ansVotes = answers.map(function (ans) {
+    return ans.votes;
   });
 
-  buildOptions(ansItems);
-  buildDoughnut(ansItems, generateRandomColors(answers.length), ansVote)
+  buildOptions(ansChoices);
+  buildDoughnut(ansChoices, generateRandomColors(answers.length), ansVotes)
 }
 
 function buildOptions(options) {

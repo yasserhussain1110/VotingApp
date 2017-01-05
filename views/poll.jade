@@ -3,7 +3,7 @@ html
   head
     title Voting App
     link(href='/bootstrap.min.css', rel='stylesheet')
-    link(href='/font-awesome.min.css', rel='stylesheet')
+    link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', rel='stylesheet')
     link(href="/style.css", rel='stylesheet')
 
     script(src="/jquery-3.1.1.min.js")
@@ -28,7 +28,7 @@ html
           div.row
             div.col-sm-4
               p #{question}
-              form.default-choice-form(action="")
+              form.default-choice-form(action="" method="post")
                 div.form-group
                   label(for="user-choice") I Choose...
                   select.form-control#user-choice(name="choice")
@@ -39,7 +39,7 @@ html
 
               div.new-choice.hidden
                 p Vote with a new choice
-                form.custom-choice-form(action="")
+                form.custom-choice-form(action="" method="post")
                   div.form-group
                     label(for="new-choice") New Choice
                     input.form-control#new-choice(type="text" name="choice")

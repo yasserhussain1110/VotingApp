@@ -1,5 +1,16 @@
 $(document).ready(function () {
   onPollReady(answers);
+
+  $(".new-choice-button").click(function (e) {
+    var btn = $(".new-choice-button");
+    if (btn.hasClass("pressed")) {
+      btn.removeClass("pressed")
+      $(".new-choice").addClass("hidden");
+    } else {
+      btn.addClass("pressed");
+      $(".new-choice").removeClass("hidden");
+    }
+  });
 });
 
 function random(lower_limit, upper_limit) {
@@ -57,7 +68,7 @@ function generateRandomColors(length) {
     return 'rgba(' + color[0] + color[1] + color[2]
       + ", " + color[3] + color[4] + color[5]
       + ", " + color[6] + color[7] + color[8]
-      + ", 0.2)";
+      + ", 1)";
   });
 }
 

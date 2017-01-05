@@ -79,3 +79,27 @@ body {
 .login-page *{
   margin: 5px 5px;
 }
+
+.new-choice-button, .new-choice-button:hover, .new-choice-button:focus {
+  box-shadow: 3px 0px 3px #888888,
+              -3px 0px 3px #888888,
+              0px 3px 3px #888888,
+              0px -3px 3px #888888;
+  background-color: #2202E3;
+  color: white;
+  margin-top: 10px;
+}
+
+
+.pressed, .pressed:hover, .pressed:focus {
+  background-color: #286090;
+  color: white;
+  box-shadow: inset 3px 0px 3px #2202E3,
+              inset -3px 0px 3px #2202E3,
+              inset 0px 3px 3px #2202E3,
+              inset 0px -3px 3px #2202E3;
+}
+
+.new-choice {
+  margin-top: 5px;
+}

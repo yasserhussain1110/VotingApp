@@ -3,11 +3,11 @@ html
   head
     title Voting App
     link(href='/bootstrap.min.css', rel='stylesheet')
-    link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', rel='stylesheet')
+    link(href='/font-awesome.min.css', rel='stylesheet')
     link(href="/style.css", rel='stylesheet')
 
     script(src="/jquery-3.1.1.min.js")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js")
+    script(src="/Chart.bundle.min.js")
     script(src="/poll.js")
     script.
       var answers = !{answerString};
@@ -28,14 +28,25 @@ html
           div.row
             div.col-sm-4
               p #{question}
-              form
+              form.default-choice-form(action="")
                 div.form-group
                   label(for="user-choice") I Choose...
-                  select.form-control#user-choice
+                  select.form-control#user-choice(name="choice")
                     option(value="", selected, disabled, hidden) Please select
-                button.col-xs-12.btn.btn-block.btn-primary(type="submit") Submit
-                a.col-xs-12.btn.btn-block.twitter-btn
-                  i.fa.fa-twitter(aria-hidden="true")
-                  span Share on Twitter
+                button.btn.btn-block.btn-primary(type="submit") Submit
+
+              button.btn.btn-block.new-choice-button Enter a new choice?
+
+              div.new-choice.hidden
+                p Vote with a new choice
+                form.custom-choice-form(action="")
+                  div.form-group
+                    label(for="new-choice") New Choice
+                    input.form-control#new-choice(type="text" name="choice")
+                  button.btn.btn-primary(type="submit") Submit
+
+              a.col-xs-12.btn.btn-block.twitter-btn
+                i.fa.fa-twitter(aria-hidden="true")
+                span Share on Twitter
             div.col-sm-offset-2.col-sm-6
               canvas#voteChart

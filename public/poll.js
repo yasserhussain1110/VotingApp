@@ -1,6 +1,11 @@
 $(document).ready(function () {
   onPollReady(answers);
 
+  $(".twitter-btn").click(function(e) {
+    window.open(this.href, '', 'menubar=no, toolbar=no,resizable=yes,scrollbars=yes,height=400,width=400');
+    return false;
+  });
+
   $(".new-choice-button").click(function (e) {
     var btn = $(".new-choice-button");
     if (btn.hasClass("pressed")) {

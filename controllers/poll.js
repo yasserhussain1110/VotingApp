@@ -6,6 +6,17 @@ const ObjectId = require('mongodb').ObjectId;
 
 var dbUrl = conf.dbUrl;
 
+function getCurrentUrl(req) {
+  var proto = req.headers['x-forwarded-proto'] ||
+  req.connection.encrypted ? "https" : "http";
+  return proto + "://" + req.get('host');
+}
+
+function getTwitterLink(req, question) {
+  var currentUrl = getCurrentUrl(req);
+  var tweet = "FCC Voting | " + question;
+  return "https://twitter.com/intent/tweet?url=" + encodeURIComponent(currentUrl) + "&text=" + encodeURIComponent(tweet);
+}
 
 const pollController = {
   get: function (req, res) {
@@ -17,7 +28,12 @@ const pollController = {
           res.status(404).send("Could not find poll");
         } else {
           var poll = polls[0];
-          res.render('poll', {question: poll.question, answerString: JSON.stringify(poll.answers)});
+          res.render('poll', {
+            question: poll.question,
+            answerString: JSON.stringify(poll.answers),
+            user: req.session.user,
+            twitterLink: getTwitterLink(req, poll.question)
+          });
         }
         db.close();
       });
@@ -46,11 +62,16 @@ function doesPollExistAction(err, db, req, res, polls) {
 }
 
 function validateInputAction(err, db, req, res, poll) {
-  var errors = validator.validateVoteForm(req.body);
-  if (_.isEmpty(errors)) {
+  var validationError = validator.validateVoteForm(req.body);
+  if (_.isEmpty(validationError)) {
     hasAlreadyAnsweredAction(err, db, req, res, poll);
   } else {
-    res.render('poll', {errors: errors, question: poll.question, answerString: JSON.stringify(poll.answers)});
+    res.render('poll', {
+      error: validationError,
+      question: poll.question,
+      answerString: JSON.stringify(poll.answers),
+      user: req.session.user
+    });
   }
 }
 
@@ -155,6 +176,5 @@ function getIpFromReq(req) {
     .replace(/^::ffff:/, '')
     .replace(/,.*/, '');
 }
-
 
 module.exports = pollController;

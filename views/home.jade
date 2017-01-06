@@ -6,11 +6,6 @@ html
     link(href='bootstrap.min.css', rel='stylesheet')
     link(href="style.css", rel='stylesheet')
 
-    //-Latest compiled and minified JavaScript
-    //-script(src="https://code.jquery.com/jquery-3.1.1.min.js")
-    //-script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
-    //-script(src="myscripts.js")
-
   body
     nav.navbar.navbar-default.navbar-fixed-top
       div.container-fluid
@@ -18,13 +13,22 @@ html
           a.navbar-brand(href="/") Voting App
         ul.nav.navbar-nav
           li.active: a(href="/") Home
-        ul.nav.navbar-nav.navbar-right
-          li: a(href="/login") Login
+        if locals.user
+          ul.nav.navbar-nav.navbar-right
+            li: a(href="/logout") Logout
+        else
+          ul.nav.navbar-nav.navbar-right
+            li: a(href="/login") Login
 
 
     div.head-jumbo.jumbotron.jumbotron-fluid
       div.heading.container
         h2 Voto: Awesome Voting App
         h3 What would you like to do today?
-        a.heading-button.btn.btn-primary(href="/signup") SignUp
-        a.heading-button.btn.btn-success(href="/polls") Vote
+        if locals.user
+          a.heading-button.btn.btn-success(href="/polls") All Polls
+          a.heading-button.btn.btn-primary(href="/mypolls") My Polls
+          a.heading-button.btn.btn-success(href="/newpoll") New Poll
+        else
+          a.heading-button.btn.btn-primary(href="/signup") SignUp
+          a.heading-button.btn.btn-success(href="/polls") Vote

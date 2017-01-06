@@ -7,6 +7,7 @@ html
     link(href="/style.css", rel='stylesheet')
 
     script(src="/jquery-3.1.1.min.js")
+    script(src="/bootstrap.min.js")
     script(src="/Chart.bundle.min.js")
     script(src="/poll.js")
     script.
@@ -19,11 +20,21 @@ html
             a.navbar-brand(href="/") Voting App
           ul.nav.navbar-nav
             li.active: a(href="/") Home
-          ul.nav.navbar-nav.navbar-right
-            li: a(href="/login") Login
-
+          if locals.user
+            ul.nav.navbar-nav.navbar-right
+              li: a(href="/logout") Logout
+          else
+            ul.nav.navbar-nav.navbar-right
+              li: a(href="/login") Login
 
       div.single-poll-container.container
+        if locals.error
+          each val, key in error
+            div.alert.alert-danger.alert-dismissable
+              a.close(href="#" data-dismiss="alert" aria-label="close") &times;
+              strong Error!&nbsp;
+              span #{val}
+
         div.jumbotron
           div.row
             div.col-sm-4
@@ -35,7 +46,8 @@ html
                     option(value="", selected, disabled, hidden) Please select
                 button.btn.btn-block.btn-primary(type="submit") Submit
 
-              button.btn.btn-block.new-choice-button Enter a new choice?
+              if locals.user
+                button.btn.btn-block.new-choice-button Enter a new choice?
 
               div.new-choice.hidden
                 p Vote with a new choice
@@ -45,8 +57,8 @@ html
                     input.form-control#new-choice(type="text" name="choice")
                   button.btn.btn-primary(type="submit") Submit
 
-              a.col-xs-12.btn.btn-block.twitter-btn
+              a.col-xs-12.btn.btn-block.twitter-btn(href="#{twitterLink}")
                 i.fa.fa-twitter(aria-hidden="true")
-                span Share on Twitter
+                span &nbsp;Share on Twitter
             div.col-sm-offset-2.col-sm-6
               canvas#voteChart

@@ -7,6 +7,7 @@ html
     link(href="style.css", rel='stylesheet')
 
     script(src="jquery-3.1.1.min.js")
+    script(src="bootstrap.min.js")
     script(src="new_poll.js")
 
   body
@@ -17,13 +18,26 @@ html
         ul.nav.navbar-nav
           li.active: a(href="/") Home
         ul.nav.navbar-nav.navbar-right
-          li: a(href="/login") Login
+          li: a(href="/logout") Logout
 
 
     div.container
       div.col-md-offset-2.col-md-8
         div.jumbotron
           h2 Make a new Poll!!
+
+          if locals.success
+            div.alert.alert-success.alert-dismissable
+              a.close(href="#" data-dismiss="alert" aria-label="close") &times;
+              strong Success!&nbsp;
+              span Poll created successfully
+
+          if locals.error
+            each val, key in error
+              div.alert.alert-danger.alert-dismissable
+                a.close(href="#" data-dismiss="alert" aria-label="close") &times;
+                strong Error!&nbsp;
+                span !{val}
 
           div.form-body
             form(method="post" action="")

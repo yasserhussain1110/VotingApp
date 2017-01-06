@@ -33,7 +33,7 @@ const appValidator = {
     choiceKeys.forEach(function (key) {
       var choiceVal = params[key];
       if (!choiceVal || !choiceVal.trim()) {
-        choiceErrors.push("Invalid choice " + choiceVal + " for " + key);
+        choiceErrors.push("Invalid choice '" + choiceVal.replace(/ /g, '&nbsp;') + "' for " + validator.escape(key));
       }
     });
 

@@ -62,5 +62,5 @@ app.get('/logout', logoutController.get);
 
 app.get('/mypolls', myPollsController.get);
 
-app.listen(process.env.port || 8080);
+app.listen(process.env.PORT || 8080);
 // db.users.createIndex( { email: 1 }, { unique: true } )

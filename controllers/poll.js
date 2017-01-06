@@ -9,7 +9,7 @@ var dbUrl = conf.dbUrl;
 function getCurrentUrl(req) {
   var proto = req.headers['x-forwarded-proto'] ||
   req.connection.encrypted ? "https" : "http";
-  return proto + "://" + req.get('host');
+  return proto + "://" + req.get('host') + req.originalUrl;
 }
 
 function getTwitterLink(req, question) {

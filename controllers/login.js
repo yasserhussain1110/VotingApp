@@ -33,7 +33,7 @@ module.exports = {
 
 function authenticateUser(loginParams, onAuthSuccess, onAuthFailure) {
   if (!loginParams.email || !loginParams.password) {
-    authFailure();
+    onAuthFailure();
     return;
   }
 

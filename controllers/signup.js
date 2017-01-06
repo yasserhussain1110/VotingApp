@@ -56,12 +56,10 @@ function createNewUser(user, onCreationSuccessful, onUserExists, onOtherError) {
   mongo.connect(dbUrl, function (err, db) {
     const usersCollection = db.collection("users");
     usersCollection.insert({email: user.email, password: user.password}, function (err, data) {
-      if (err && err.code === 11000) {
-        onUserExists();
-      }
-
       if (!err) {
         onCreationSuccessful(data.ops[0]);
+      } else if (err.code === 11000) {
+        onUserExists();
       } else {
         console.log("Weird Situation");
         onOtherError();

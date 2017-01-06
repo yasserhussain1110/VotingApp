@@ -45,15 +45,13 @@ function insertNewPollInDB(userId, reqParams, onPollExists, onSuccess) {
       createdBy: userId,
       answeredBy: []
     }, function (err, data) {
-      if (err && err.code === 11000) {
-        onPollExists();
-      }
       if (!err) {
         onSuccess();
+      } else if (err.code === 11000) {
+        onPollExists();
       } else {
         console.log("Weird Situation");
       }
-
       db.close();
     });
   });

@@ -43,9 +43,9 @@ app.get('/home', homeController.get);
 
 app.get('/polls', listPollsController.get);
 
-app.get('/poll/:id([0-9a-fA-F]{24})', pollController.get);
+app.get('/poll/:id([0-9a-fA-F]{24}$)', pollController.get);
 
-app.post('/poll/:id(^[0-9a-fA-F]{24}$)', pollController.post);
+app.post('/poll/:id([0-9a-fA-F]{24}$)', pollController.post);
 
 app.get('/signup', signupController.get);
 

@@ -50,6 +50,14 @@ const appValidator = {
       errors.choiceError = "Choice cannot be empty";
     }
     return errors;
+  },
+
+  validateDeletePollForm: function(params) {
+    errors = {};
+    if(! /^[0-9a-fA-F]{24}$/.test(params.pollId)) {
+      errors.deleteError = "Invalid Poll Id";
+    }
+    return errors;
   }
 };
 

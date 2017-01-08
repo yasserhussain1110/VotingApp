@@ -13,6 +13,7 @@ const loginController = require('./controllers/login');
 const homeController = require('./controllers/home');
 const logoutController = require('./controllers/logout');
 const myPollsController = require('./controllers/my_polls');
+const deletePollController = require('./controllers/delete_poll');
 
 const conf = require('./services/conf');
 
@@ -44,7 +45,7 @@ app.get('/polls', listPollsController.get);
 
 app.get('/poll/:id([0-9a-fA-F]{24})', pollController.get);
 
-app.post('/poll/:id([0-9a-fA-F]{24})', pollController.post);
+app.post('/poll/:id(^[0-9a-fA-F]{24}$)', pollController.post);
 
 app.get('/signup', signupController.get);
 
@@ -61,6 +62,8 @@ app.post('/newpoll', newPollController.post);
 app.get('/logout', logoutController.get);
 
 app.get('/mypolls', myPollsController.get);
+
+app.post('/deletepoll', deletePollController.post);
 
 app.listen(process.env.PORT || 8080);
 // db.users.createIndex( { email: 1 }, { unique: true } )

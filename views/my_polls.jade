@@ -28,3 +28,10 @@ html
           each poll in polls
             li.list-group-item
               a.poll_link(href="/poll/#{poll._id}") #{poll.question}
+              // TODO: Poll modification
+                form(action="/modifypoll" method="post")
+                input(type="hidden" name="pollId" value="#{poll._id}")
+                button.button.btn.btn-warning Modify
+              form(action="/deletepoll" method="post")
+                input(type="hidden" name="pollId" value="#{poll._id}")
+                button.button.btn.btn-danger Delete

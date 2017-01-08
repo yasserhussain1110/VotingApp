@@ -144,3 +144,11 @@ body {
   color: white;
   vertical-align: middle;
 }
+
+.polls-list a, form{
+  margin: 0px 5px;
+}
+
+.poll_link ~ form {
+  display: inline;
+}

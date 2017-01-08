@@ -128,7 +128,7 @@ body {
 }
 
 
-.fa-twitter {
+.twitter-link > .fa-twitter {
   font-size: 25px;
   color: white;
   height: 27px;
@@ -145,7 +145,7 @@ body {
   vertical-align: middle;
 }
 
-.polls-list a, form{
+.polls-list > li > *{
   margin: 0px 5px;
 }
 

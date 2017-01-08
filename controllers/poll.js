@@ -80,7 +80,9 @@ function hasAlreadyAnsweredAction(err, db, req, res, poll) {
   var userInfo = getUserInfoHelper(req);
   if (alreadyVotedHelper(answeredBy, userInfo)) {
     res.render('poll', {
-      error: "This user or ip address has already voted",
+      error: {
+        alreadyVotedError: "This user or ip address has already voted"
+      },
       question: poll.question,
       answerString: JSON.stringify(poll.answers),
       user: req.session.user

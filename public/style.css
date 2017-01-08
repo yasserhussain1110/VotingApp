@@ -103,3 +103,44 @@ body {
 .new-choice {
   margin-top: 5px;
 }
+
+.twitter-login-btn {
+  margin-top: 10px;
+  height: 35px;
+  background-color: #1b6d85;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 2px 5px 3px 5px;
+}
+
+.twitter-login-btn:hover {
+  background-color: #2795E9;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.twitter-link{
+  text-decoration: none;
+}
+
+.twitter-link:hover {
+  text-decoration: none;
+}
+
+
+.fa-twitter {
+  font-size: 25px;
+  color: white;
+  height: 27px;
+  padding-top: 3px;
+  padding-right: 5px;
+  border-right: 1px solid black;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.twitter-login-msg {
+  font-size: 15px;
+  color: white;
+  vertical-align: middle;
+}

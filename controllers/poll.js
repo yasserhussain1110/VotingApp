@@ -79,7 +79,12 @@ function hasAlreadyAnsweredAction(err, db, req, res, poll) {
   var answeredBy = poll.answeredBy;
   var userInfo = getUserInfoHelper(req);
   if (alreadyVotedHelper(answeredBy, userInfo)) {
-    res.status(400).send("This user or ip address has already voted");
+    res.render('poll', {
+      error: "This user or ip address has already voted",
+      question: poll.question,
+      answerString: JSON.stringify(poll.answers),
+      user: req.session.user
+    });
   } else {
     castVoteAction(err, db, req, res, poll, userInfo);
   }

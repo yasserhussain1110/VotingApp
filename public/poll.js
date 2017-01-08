@@ -1,7 +1,7 @@
 $(document).ready(function () {
   onPollReady(answers);
 
-  $(".twitter-btn").click(function(e) {
+  $(".twitter-btn").click(function (e) {
     window.open(this.href, '', 'menubar=no, toolbar=no,resizable=yes,scrollbars=yes,height=400,width=400');
     return false;
   });
@@ -96,6 +96,21 @@ function buildDoughnut(labels, colors, data) {
       legend: {
         display: true,
         position: 'bottom'
+      },
+      tooltips: {
+        callbacks: {
+          label: function (tooltipItem, data) {
+            var allData = data.datasets[tooltipItem.datasetIndex].data;
+            var tooltipLabel = data.labels[tooltipItem.index];
+            var tooltipData = allData[tooltipItem.index];
+            var total = 0;
+            for (var i in allData) {
+              total += allData[i];
+            }
+            var tooltipPercentage = Math.round((tooltipData / total) * 100);
+            return tooltipLabel + ': ' + tooltipData + ' (' + tooltipPercentage + '%)';
+          }
+        }
       }
     }
   });
